@@ -1,5 +1,8 @@
 package com.jc.smartlisttest.models
 
-class Tag(name: String) {
-    val name = name
-}
+import android.graphics.Color
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class Tag(val name: String, val color: Int): Parcelable

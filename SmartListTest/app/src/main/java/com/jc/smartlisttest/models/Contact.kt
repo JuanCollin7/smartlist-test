@@ -1,7 +1,7 @@
 package com.jc.smartlisttest.models
 
-class Contact(name: String, phone: String, tag: Tag) {
-    val name: String = name
-    val phone: String = phone
-    val tag: Tag = tag
-}
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class Contact(val name: String, val phone: String, val tag: Tag): Parcelable

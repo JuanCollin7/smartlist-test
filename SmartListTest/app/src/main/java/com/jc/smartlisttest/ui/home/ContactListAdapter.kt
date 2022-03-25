@@ -1,16 +1,15 @@
-package com.jc.smartlisttest
+package com.jc.smartlisttest.ui.home
 
+import android.content.res.ColorStateList
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.jc.smartlisttest.ContactItemViewHolder
+import com.jc.smartlisttest.R
 import com.jc.smartlisttest.models.Contact
-import com.jc.smartlisttest.ui.home.OnItemClickListener
 
-class ContactListAdapter(itemInterface: OnItemClickListener): RecyclerView.Adapter<ContactItemViewHolder>()  {
-
-    val itemInterface = itemInterface
+class ContactListAdapter(private val itemInterface: ContactItemClickListener): RecyclerView.Adapter<ContactItemViewHolder>()  {
 
     var data = listOf<Contact>()
         set(value) {
@@ -25,6 +24,7 @@ class ContactListAdapter(itemInterface: OnItemClickListener): RecyclerView.Adapt
         holder.nameTextView.text = item.name
         holder.phoneTextView.text = item.phone
         holder.tagButton.text = item.tag.name
+        holder.tagButton.backgroundTintList = ColorStateList.valueOf(item.tag.color)
 
         holder.itemView.setOnClickListener {
             itemInterface.onItemClicked(item)

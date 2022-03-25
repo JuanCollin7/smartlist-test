@@ -14,8 +14,8 @@ class HomeViewModel : ViewModel() {
     val contacts: LiveData<ArrayList<Contact>> = _contacts
 
     init {
-        val contact1 = Contact("Juan", "+55 51 91234-5678", Tag("SCHEDULED"))
-        val contact2 = Contact("Lucas", "+55 51 99876-5432", Tag("TO CONTACT"))
+        val contact1 = Contact("Juan", "+55 51 91234-5678", Tag("SCHEDULED", Color.RED))
+        val contact2 = Contact("Lucas", "+55 51 99876-5432", Tag("TO CONTACT", Color.BLUE))
         _contacts.value = arrayListOf(contact1, contact2)
     }
 }

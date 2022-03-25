@@ -1,23 +1,18 @@
 package com.jc.smartlisttest.ui.home
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.jc.smartlisttest.ContactItemViewHolder
-import com.jc.smartlisttest.ContactListAdapter
-import com.jc.smartlisttest.MainActivity
+import com.jc.smartlisttest.ContactDetailActivity
 import com.jc.smartlisttest.databinding.FragmentHomeBinding
 import com.jc.smartlisttest.models.Contact
-import com.jc.smartlisttest.ui.tags.TagsFragment
 
-class HomeFragment : Fragment(), OnItemClickListener {
+class HomeFragment : Fragment(), ContactItemClickListener {
 
     private var _binding: FragmentHomeBinding? = null
 
@@ -55,11 +50,6 @@ class HomeFragment : Fragment(), OnItemClickListener {
 
     override fun onItemClicked(item: Contact) {
         Toast.makeText(context, item.name, Toast.LENGTH_SHORT).show()
-        val intent = Intent(this@HomeFragment.context, MainActivity::class.java)
-        startActivity(intent)
+        startActivity(ContactDetailActivity.getInstance(requireContext(), item))
     }
-}
-
-interface OnItemClickListener {
-    fun onItemClicked(item: Contact)
 }

@@ -1,5 +1,6 @@
 package com.jc.smartlisttest
 
+import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
@@ -19,12 +20,8 @@ class TagListAdapter: RecyclerView.Adapter<TagItemViewHolder>()  {
     override fun onBindViewHolder(holder: TagItemViewHolder, position: Int) {
         val item = data[position]
         holder.tagButton.text = item.name
-
-        if (position % 2 == 0) {
-            holder.qtyTextView.text = "2 contacts"
-        } else {
-            holder.qtyTextView.text = "1 contact"
-        }
+        holder.tagButton.backgroundTintList = ColorStateList.valueOf(item.color)
+        holder.qtyTextView.text = "1 contact"
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TagItemViewHolder {
