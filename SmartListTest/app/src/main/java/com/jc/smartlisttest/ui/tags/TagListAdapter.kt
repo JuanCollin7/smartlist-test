@@ -1,13 +1,17 @@
-package com.jc.smartlisttest
+package com.jc.smartlisttest.ui.tags
 
 import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.jc.smartlisttest.R
+import com.jc.smartlisttest.TagItemViewHolder
 import com.jc.smartlisttest.models.Tag
+import com.jc.smartlisttest.ui.home.ContactItemClickListener
+import com.jc.smartlisttest.ui.home.TagItemClickListener
 
-class TagListAdapter: RecyclerView.Adapter<TagItemViewHolder>()  {
+class TagListAdapter(private val itemInterface: TagItemClickListener): RecyclerView.Adapter<TagItemViewHolder>()  {
 
     var data = listOf<Tag>()
         set(value) {
@@ -22,6 +26,10 @@ class TagListAdapter: RecyclerView.Adapter<TagItemViewHolder>()  {
         holder.tagButton.text = item.name
         holder.tagButton.backgroundTintList = ColorStateList.valueOf(item.color)
         holder.qtyTextView.text = "1 contact"
+
+        holder.itemView.setOnClickListener {
+            itemInterface.onItemClicked(item)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TagItemViewHolder {

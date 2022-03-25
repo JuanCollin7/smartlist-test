@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.jc.smartlisttest.TagListAdapter
+import com.jc.smartlisttest.TagDetailActivity
 import com.jc.smartlisttest.databinding.FragmentTagsBinding
+import com.jc.smartlisttest.models.Tag
+import com.jc.smartlisttest.ui.home.TagItemClickListener
 
-class TagsFragment : Fragment() {
+class TagsFragment : Fragment(), TagItemClickListener {
 
     private var _binding: FragmentTagsBinding? = null
 
@@ -29,7 +31,7 @@ class TagsFragment : Fragment() {
         _binding = FragmentTagsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val adapter = TagListAdapter()
+        val adapter = TagListAdapter(this)
         binding.tagList.adapter = adapter
 
         tagsViewModel.tags.observe(viewLifecycleOwner, Observer {
@@ -44,5 +46,9 @@ class TagsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onItemClicked(item: Tag) {
+        startActivity(TagDetailActivity.getInstance(requireContext(), item))
     }
 }
